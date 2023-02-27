@@ -1,0 +1,42 @@
+version: '3.3'
+services:
+    application:
+        build:
+            context: php
+            dockerfile: Dockerfile
+        container_name: application-pagamentos
+        hostname: application-pagamentos
+        restart: always
+        volumes:
+            - ./application:/var/www/html/
+        ports:
+            - "80:80"
+        networks:
+            - bot-network
+
+    database:
+        image: mysql:5.7
+        container_name: pagamentos-database
+        hostname: pagamentos-database
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: 'N050197s'
+            MYSQL_ROOT_HOST: '%'
+            MYSQL_LOG_CONSOLE: '1'
+            MYSQL_DATABASE: 'bots'
+            MYSQL_USER: 'db_user'
+            MYSQL_PASSWORD: 'N050197s'
+            TZ: 'America/Sao_Paulo'
+        volumes:
+            - db-data:/var/lib/mysql
+        ports:
+            - "3306:3306"
+        networks:
+            - bot-network
+
+volumes:
+    db-data:
+
+networks:
+    bot-network:
+        driver: bridge
