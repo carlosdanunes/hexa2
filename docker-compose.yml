@@ -4,8 +4,8 @@ services:
         build:
             context: php
             dockerfile: Dockerfile
-        container_name: application-pagamentos
-        hostname: application-pagamentos
+        container_name: application-hexa
+        hostname: application-hexa
         restart: always
         volumes:
             - ./application:/var/www/html/
@@ -16,16 +16,16 @@ services:
 
     database:
         image: mysql:5.7
-        container_name: pagamentos-database
-        hostname: pagamentos-database
+        container_name: hexa-database
+        hostname: hexa-database
         restart: always
         environment:
-            MYSQL_ROOT_PASSWORD: 'N050197s'
+            MYSQL_ROOT_PASSWORD: 'HFOktgcngMYqXKH#'
             MYSQL_ROOT_HOST: '%'
             MYSQL_LOG_CONSOLE: '1'
-            MYSQL_DATABASE: 'bots'
-            MYSQL_USER: 'db_user'
-            MYSQL_PASSWORD: 'N050197s'
+            MYSQL_DATABASE: 'hexa'
+            MYSQL_USER: 'carlos'
+            MYSQL_PASSWORD: 'HFOktgcngMYqXKH#'
             TZ: 'America/Sao_Paulo'
         volumes:
             - db-data:/var/lib/mysql
