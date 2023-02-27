@@ -33,6 +33,15 @@ services:
             - "3306:3306"
         networks:
             - bot-network
+    
+    redis:
+        image: redis:latest
+        container_name: hexa_redis
+        restart: always
+        ports:
+        - "6379:6379"
+        networks:
+        - bot-network
 
 volumes:
     db-data:
