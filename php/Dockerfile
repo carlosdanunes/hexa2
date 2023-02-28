@@ -1,12 +1,8 @@
-
 FROM php:7.1.3-apache
 
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-
-RUN chmod +x /usr/local/bin/install-php-extensions && install-php-extensions gd xdebug
-
 # Update and Download Packages Debian
-RUN apt-get update -y
+RUN echo 'deb http://httpredir.debian.org/debian jessie contrib' >> /etc/apt/sources.list \
+  && apt-get --force-yes update && apt-get --force-yes upgrade -y --no-install-recommends apt-utils
 
 # Install Dependencies
 RUN apt-get --yes --force-yes install \
@@ -39,7 +35,29 @@ RUN apt-get --yes --force-yes install \
  unzip \
  zlib1g-dev \
  zip \
+ wget \
  libonig-dev -y
+
+
+RUN wget -qO- https://deb.nodesource.com/setup_9.x -o nodesource_setup.sh
+RUN bash nodesource_setup.sh
+RUN apt-get update -y
+RUN apt-get --force-yes --yes install -y nodejs
+RUN rm nodesource_setup.sh
+RUN mkdir /.config
+RUN mkdir /.npm
+RUN chown -R $USER_ID:$USER_ID /.config
+RUN chown -R $USER_ID:$USER_ID /.npm
+RUN touch /.npmrc
+RUN chown -R $USER_ID:$USER_ID /.npmrc
+ENV NPM_CONFIG_USERCONFIG=/.npmrc
+
+
+RUN chown -R www-data:www-data /var/www/html
+
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/install-php-extensions && install-php-extensions gd xdebug
 
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/
 
@@ -88,8 +106,7 @@ RUN service apache2 restart
 
 RUN  mkdir /var/run/redis
 
-RUN curl -fsSL https://deb.nodesource.com/setup_14.x
-RUN apt-get --force-yes --yes install -y nodejs
+
 
 # CMD [ "node", "storage/bot/app.js"]
 
