@@ -173,7 +173,7 @@ $(document).ready(function() {
 		return times;
 	}
 	
-	var socket = io.connect(':7777');
+	var socket = io.connect(':8000');
 	
 	socket.on('bonus', function(data) {
 		if(USER_ID == data.unique_id) {

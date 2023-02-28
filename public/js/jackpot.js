@@ -31,7 +31,7 @@ $(document).ready(function() {
 
     getCurrentRoom();
 
-    const socket = io.connect(':7777');
+    const socket = io.connect(':8000');
 
     socket.on('jackpot', r => {
         if(r.type == 'timer' && room == r.room) {

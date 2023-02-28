@@ -2,7 +2,7 @@ $(document).ready(function() {
 	let canvas = document.getElementById('crashChart'),
 		ctx    = canvas.getContext('2d')
 	
-    this.socket = io.connect(':7777');
+    this.socket = io.connect(':8000');
 	
 	Chart.pluginService.register({
 		afterDraw: function(chart) {

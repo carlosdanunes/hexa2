@@ -154,7 +154,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	var socket = io.connect(':7777');
+	var socket = io.connect(':8000');
 	socket
 	.on('ban_message', function(data) {
 		if(data.ban) {

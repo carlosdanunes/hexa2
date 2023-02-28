@@ -576,7 +576,7 @@
                     </svg>
                   </a>
                 </div>
-                <div class="disclaimer">Входя на сайт, вы принимаете условия
+                <div class="disclaimer">Ao entrar no site, você aceita os termos e condições
                   <br>
                   <button class="button-link" data-toggle="modal" data-target="#tosModal">лицензионного соглашения</button> и подтверждаете, что Вам есть 18 лет</div>
                 <div class="leave-link"><a href="https://google.com" rel="nofollow">Покинуть сайт</a></div>
@@ -1580,7 +1580,7 @@
 						<div class="head"><img src="/img/logo.png" alt=""></div>
 						<div class="body">
 							<div class="wrap">
-								<div class="disclaimer">Входя на сайт, вы принимаете условия
+								<div class="disclaimer">Ao entrar no site, você aceita os termos e condições
 									<br>
 									<button class="button-link" data-toggle="modal" data-target="#tosModal">лицензионного соглашения</button> и подтверждаете, что Вам есть 18 лет</div>
 								<div class="leave-link"><a href="https://google.com" rel="nofollow">Покинуть сайт</a></div>

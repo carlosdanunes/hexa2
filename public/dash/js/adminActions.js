@@ -31,7 +31,7 @@ $(document).ready(function() {
             }
         });
 	});
-    var socket = io.connect(':7777');
+    var socket = io.connect(':8000');
 	socket.on('chat', function (data) {
 		msg = data;
 		var chat = $('#chat_app');

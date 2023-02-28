@@ -16,7 +16,7 @@ $(document).ready(function() {
 			}
 		})
 	});
-	var socket = io.connect(':7777');
+	var socket = io.connect(':8000');
 
 	socket.on('hilo.newBet', function(data) {
 		var html = '';

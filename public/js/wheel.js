@@ -17,7 +17,7 @@ $(document).ready(function() {
 		})
 	});
 	
-	var socket = io.connect(':7777');
+	var socket = io.connect(':8000');
 	
 	socket.on('wheel', function(data) {
 		if(data.type == 'bets') parseBets(data.bets);

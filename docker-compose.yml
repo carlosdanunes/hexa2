@@ -11,6 +11,7 @@ services:
             - ./:/var/www/html/
         ports:
             - "80:80"
+            - "8000:8000"
         networks:
             - bot-network
 

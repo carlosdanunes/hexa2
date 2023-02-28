@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	var timerId;
-	var socket = io.connect(':7777');
+	var socket = io.connect(':8000');
 	
 	$('.btn-play').click(function(e) {
 		if($('.btn-play').attr('disabled') == 'true') return;

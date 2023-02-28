@@ -41,8 +41,9 @@ RUN apt-get --yes --force-yes install \
 
 RUN wget -qO- https://deb.nodesource.com/setup_9.x -o nodesource_setup.sh
 RUN bash nodesource_setup.sh
-RUN apt-get update -y
-RUN apt-get --force-yes --yes install -y nodejs
+RUN apt-get --force-yes update -y
+RUN apt-get --force-yes upgrade -y
+RUN apt-get --force-yes --yes install -y nodejs npm
 RUN rm nodesource_setup.sh
 RUN mkdir /.config
 RUN mkdir /.npm

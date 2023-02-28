@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	var socket = io.connect(':7777');
+	var socket = io.connect(':8000');
 	
 	socket.on('new.flip', function (data) {
 		if(USER_ID == data.unique_id) {

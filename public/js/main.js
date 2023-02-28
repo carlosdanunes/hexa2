@@ -669,7 +669,7 @@ $(document).ready(function() {
         });
     });
 	
-	var socket = io.connect(':7777');
+	var socket = io.connect(':8000');
 	socket
 	.on('online', function (data) {
 		$('.chat-online span').text(data); 
