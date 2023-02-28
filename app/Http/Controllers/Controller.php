@@ -33,7 +33,7 @@ class Controller extends BaseController
             view()->share('u', $this->user);
             return $next($request);
         });
-        Carbon::setLocale('ru');
+        Carbon::setLocale('br');
         $this->redis = Redis::connection();
 		$this->settings = Settings::first();
         view()->share('gws', $this->getWithSettings());

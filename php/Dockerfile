@@ -1,15 +1,15 @@
 
-FROM php:8.1-apache
+FROM php:7.1.3-apache
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/install-php-extensions && install-php-extensions gd xdebug
 
 # Update and Download Packages Debian
-RUN apt-get update --yes
+RUN apt-get update -y
 
 # Install Dependencies
-RUN apt-get install --yes \
+RUN apt-get --yes --force-yes install \
  autoconf \
  vim \
  nano \
@@ -18,16 +18,11 @@ RUN apt-get install --yes \
  ca-certificates \
  gettext \
  git \
- g++ \
- freetds-bin \
- freetds-dev \
- freetds-common \
  make \
  libbz2-dev \
  libcurl4-openssl-dev \
  libicu-dev \
  libzip-dev \
- libfreetype6-dev \
  librabbitmq-dev \
  libgd-dev \
  libjpeg62-turbo-dev \
@@ -44,7 +39,7 @@ RUN apt-get install --yes \
  unzip \
  zlib1g-dev \
  zip \
- libonig-dev
+ libonig-dev -y
 
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/
 
@@ -72,7 +67,7 @@ RUN docker-php-ext-configure zip
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN apt install systemctl -y
+# RUN apt-get --yes --force-yes install systemctl -y
 
 RUN chmod 777 -R /var/www/html/
 
@@ -86,11 +81,19 @@ RUN a2enmod vhost_alias
 COPY 000-default.conf /etc/apache2/sites-enabled/000-default.conf
 RUN find /var/www/html -type d -exec chmod 755 {} \;
 RUN service apache2 restart
-#RUN a2ensite 000-default.conf
-#RUN a2dissite limbotecnologia.com.br.conf
-#RUN systemctl reload apache2
-RUN systemctl reload apache2
+# RUN a2ensite 000-default.conf
+# RUN a2dissite limbotecnologia.com.br.conf
+# RUN systemctl reload apache2
+# RUN systemctl reload apache2
 
+RUN  mkdir /var/run/redis
+
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x
+RUN apt-get --force-yes --yes install -y nodejs
+
+# CMD [ "node", "storage/bot/app.js"]
+
+RUN pwd
 
 # Clean
 RUN apt-get clean -y
